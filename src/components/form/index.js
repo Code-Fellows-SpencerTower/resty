@@ -3,22 +3,20 @@ import React from 'react';
 import './form.scss';
 
 
-function handleSubmit(e, props) {
-  e.preventDefault();
-  const formData = {
-    method: 'GET',
-    url: 'https://pokeapi.co/api/v2/pokemon',
-  };
-  props.handleApiCall(formData);
-}
-
 function Form(props) {
 
-  handleSubmit(props);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = {
+      method: 'GET',
+      url: 'https://pokeapi.co/api/v2/pokemon',
+    };
+    props.handleApiCall(formData);
+  }
 
   return (
     <>
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
           <input name='url' type='text' />
@@ -33,7 +31,6 @@ function Form(props) {
       </form>
     </>
   );
-
 }
 
 export default Form;
