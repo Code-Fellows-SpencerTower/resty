@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
 $backgroundColor: #efefef;
 $radius: 40%;
+$fontFamily: 'Raleway', sans-serif;
+
 
 form {
   display: inline-block;
@@ -9,16 +13,18 @@ form {
   label {
     display: flex;
     margin: 1rem 0;
+    
 
     &.methods {
       span {
         cursor: pointer;
         margin-right: 1rem;
         padding: .25rem .5rem;
-        background: #ccc;
+        background: rgb(204, 204, 204);
+        font-family: $fontFamily;
 
         &:hover, &.active {
-          background: #fff;
+          background: rgb(255, 255, 255);
         }
       }
     }

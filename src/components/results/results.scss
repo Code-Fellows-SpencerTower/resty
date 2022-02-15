@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+$textColor: grey;
+$backgroundColor: bisque;
+$fontFamily: 'Raleway', sans-serif;
+
+
+
+pre {
+  color: $textColor;
+}
+
+section {
+  background-color: $backgroundColor;
+}
