@@ -24,8 +24,9 @@ function Form(props) {
   function changeMethod(method) {
     setMethod(method);
   }
-  function changeURL(url) {
-    setURL(url);
+  function changeURL(event) {
+    let { value } = event.target;
+    setURL(value);
   }
 
 
@@ -35,7 +36,7 @@ function Form(props) {
       <form onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
-          <input name='url' type='text' onChange={(e) => changeURL(e.target.value)} />
+          <input name='url' type='text' data-testid="url-input" onChange={changeURL} />
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
