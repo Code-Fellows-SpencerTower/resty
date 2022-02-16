@@ -19,10 +19,13 @@ function Form(props) {
   let [method, setMethod] = useState('GET');
   console.log('method state: ', method);
   let [url, setURL] = useState();
-  // setURL(url);
-  // console.log('Hello');
+  console.log('url state: ', url);
+
   function changeMethod(method) {
     setMethod(method);
+  }
+  function changeURL(url) {
+    setURL(url);
   }
 
 
@@ -32,7 +35,7 @@ function Form(props) {
       <form onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
-          <input name='url' type='text' onChange={setURL} />
+          <input name='url' type='text' onChange={(e) => changeURL(e.target.value)} />
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
