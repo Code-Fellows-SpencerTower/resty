@@ -21,14 +21,18 @@ class App extends React.Component {
 
   callApi = (requestParams) => {
     // mock output
+    // console.log('METHOD IN CALLAPI IN APP: ', requestParams.method);
+    // console.log('URL IN CALLAPI IN APP: ', requestParams.url);
+    
     const data = {
       count: 2,
       results: [
-        {name: 'fake thing 1', url: 'http://fakethings.com/1'},
-        {name: 'fake thing 2', url: 'http://fakethings.com/2'},
+        { name: 'fake thing 1', url: 'http://fakethings.com/1' },
+        { name: 'fake thing 2', url: 'http://fakethings.com/2' },
       ],
     };
-    this.setState({data, requestParams});
+
+    this.setState({ data, requestParams });
   }
 
   render() {

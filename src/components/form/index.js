@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import './form.scss';
 
@@ -7,26 +8,54 @@ function Form(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('METHOD IN HANDLE: ', method);
     const formData = {
-      method: 'GET',
-      url: 'https://pokeapi.co/api/v2/pokemon',
+      method: method,
+      url: url,
     };
     props.handleApiCall(formData);
   }
+
+  let [method, setMethod] = useState('GET');
+  console.log('method state: ', method);
+  let [url, setURL] = useState();
+  console.log('url state: ', url);
+
+  function changeMethod(method) {
+    setMethod(method);
+  }
+  function changeURL(event) {
+    let { value } = event.target;
+    setURL(value);
+  }
+
+
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
-          <input name='url' type='text' />
+          <input name='url' type='text' data-testid="url-input" onChange={changeURL} />
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
-          <span id="get">GET</span>
-          <span id="post">POST</span>
-          <span id="put">PUT</span>
-          <span id="delete">DELETE</span>
+          {/* <button onClick={setMethod()}> */}
+          <span id="get" onClick={() => changeMethod('GET')}>GET</span>
+          {/* </button> */}
+          {/* <button onClick={setMethod('post')}> */}
+          <span id="post" onClick={() => changeMethod('POST')}>POST</span>
+          {/* </button> */}
+          {/* <button onClick={setMethod('put')}> */}
+          <span id="put" onClick={() => changeMethod('PUT')}>PUT</span>
+          {/* </button> */}
+          {/* <button onClick={setMethod('delete')}> */}
+          <span id="delete" onClick={() => changeMethod('DELETE')}>DELETE</span>
+          {/* </button> */}
+
+
+
+
         </label>
       </form>
     </>
