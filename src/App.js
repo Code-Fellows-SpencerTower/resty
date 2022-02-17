@@ -2,6 +2,9 @@ import React from 'react';
 
 import './app.scss';
 
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 // Let's talk about using index.js and some other name in the component folder
 // There's pros and cons for each way of doing this ...
 import Header from './components/header';
@@ -9,44 +12,51 @@ import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 
-class App extends React.Component {
+function App(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-      requestParams: {},
-    };
+  // componentDidMount
+
+  let [data, setData] = useState(null);
+  let [requestParams, setRequestParams] = useState({});
+
+
+  function changeData(data) {
+    setData(data);
   }
 
-  callApi = (requestParams) => {
-    // mock output
-    // console.log('METHOD IN CALLAPI IN APP: ', requestParams.method);
-    // console.log('URL IN CALLAPI IN APP: ', requestParams.url);
-    
-    const data = {
-      count: 2,
-      results: [
-        { name: 'fake thing 1', url: 'http://fakethings.com/1' },
-        { name: 'fake thing 2', url: 'http://fakethings.com/2' },
-      ],
-    };
-
-    this.setState({ data, requestParams });
+  function changeRequestParams(requestParams) {
+    console.log('CHANGEREQUESTPARAMS TRIGGERED');
+    setRequestParams(requestParams);
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <div>Request Method: {this.state.requestParams.method}</div>
-        <div>URL: {this.state.requestParams.url}</div>
-        <Form handleApiCall={this.callApi} />
-        <Results data={this.state.data} />
-        <Footer />
-      </React.Fragment>
-    );
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     data: null,
+  //     requestParams: {},
+  //   };
+  // }
+  useEffect(() => {
+    console.log('useEffect Triggered')
+    const data = axios.get(requestParams.url)
+      .then((data) => {
+        changeData(data);
+        // changeRequestParams(requestParams);
+
+      })
+      .then(() => console.log(data));
+  }, [requestParams]);
+
+  return (
+    <React.Fragment>
+      <Header />
+      <div>Request Method: {requestParams.method}</div>
+      <div>URL: {requestParams.url}</div>
+      <Form updateRequestState={changeRequestParams} />
+      <Results data={data} />
+      <Footer />
+    </React.Fragment>
+  );
 }
 
 export default App;

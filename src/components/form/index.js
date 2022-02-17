@@ -13,7 +13,7 @@ function Form(props) {
       method: method,
       url: url,
     };
-    props.handleApiCall(formData);
+    props.updateRequestState(formData);
   }
 
   let [method, setMethod] = useState('GET');
