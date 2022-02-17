@@ -8,7 +8,6 @@ function Form(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('METHOD IN HANDLE: ', method);
     const formData = {
       method: method,
       url: url,
@@ -17,9 +16,7 @@ function Form(props) {
   }
 
   let [method, setMethod] = useState('GET');
-  console.log('method state: ', method);
   let [url, setURL] = useState();
-  console.log('url state: ', url);
 
   function changeMethod(method) {
     setMethod(method);
